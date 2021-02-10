@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="{{ url('/') }}">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Orders</a>
@@ -19,9 +19,23 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Cart(0)</a>
-            </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">Cart({{ App\Http\Controllers\ProductController::cartItem() }})</a>
+          </li>
+            @if(Session::has('user'))
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ Session::get('user')['name'] }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{{ url('/logout') }}">Logout</a></li>
+                </ul>
+              </li>
+            @else
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/login') }}">Login</a>
+              </li>
+            @endif
         </ul>
       </div>
     </div>

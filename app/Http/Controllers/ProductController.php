@@ -37,8 +37,20 @@ class ProductController extends Controller
             $cart->user_id = Session::get('user')['id'];
             $cart->product_id = $request->input('product_id');
             $cart->save();
+            return redirect('/');
         } else {
             return redirect('/login');
         }
+    }
+
+    public static function cartItem()
+    {
+        if(Session::has('user')) {
+            $userId = Session::get('user')['id'];
+            return Cart::where('user_id', $userId)->count();
+        } else {
+            return 0;
+        }
+
     }
 }

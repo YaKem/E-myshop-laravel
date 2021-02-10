@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -15,7 +16,7 @@ class UserController extends Controller
         if(!$user || !Hash::check($request->password, $user->password)) {
             return "Username or password is not matched";
         } else {
-            $request->session()->put('user', $user);
+            Session::put('user', $user);
             return redirect('/');
         }
     }
