@@ -20,7 +20,7 @@
         </form>
         <ul class="navbar-nav navbar-right">
           <li class="nav-item">
-              <a class="nav-link" href="#">Cart({{ App\Http\Controllers\ProductController::cartItem() }})</a>
+              <a class="nav-link" href="/cartlist">Cart({{ App\Http\Controllers\ProductController::cartItem() }})</a>
           </li>
             @if(Session::has('user'))
               <li class="nav-item dropdown">
