@@ -10,7 +10,7 @@
             <a class="nav-link" href="{{ url('/') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Orders</a>
+            <a class="nav-link" href="{{ url('myorders') }}">Orders</a>
           </li>          
         </ul>
         <form class="d-flex" action="{{ url('search') }}" method="POST">
@@ -22,20 +22,23 @@
           <li class="nav-item">
               <a class="nav-link" href="/cartlist">Cart({{ App\Http\Controllers\ProductController::cartItem() }})</a>
           </li>
-            @if(Session::has('user'))
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ Session::get('user')['name'] }}
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="{{ url('/logout') }}">Logout</a></li>
-                </ul>
-              </li>
-            @else
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('/login') }}">Login</a>
-              </li>
-            @endif
+          @if(Session::has('user'))
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ Session::get('user')['name'] }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{ url('/logout') }}">Logout</a></li>
+              </ul>
+            </li>
+          @else
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/register') }}">Register</a>
+            </li>
+          @endif
         </ul>
       </div>
     </div>
